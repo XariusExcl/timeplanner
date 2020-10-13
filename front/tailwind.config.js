@@ -1,10 +1,7 @@
 module.exports = {
-    purge: [
-        './*.html'
-    ],
-    theme: {
-      extend: {},
+    purge: {
+      mode: 'all',
+      enabled: true,
+      content: ['./index.html'],
     },
-    variants: {},
-    plugins: [],
-  };
+  }

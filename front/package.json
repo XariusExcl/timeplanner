@@ -1,17 +1,12 @@
 {
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "sass": "^1.26.12",
-    "typescript": "^4.0.3"
+    "sass": "^1.26.11"
   },
   "dependencies": {
-    "parcel-bundler": "^1.12.4",
     "postcss-modules": "^3.2.2",
+    "postcss-purgecss": "^2.0.3",
+    "purgecss": "^3.0.0",
     "tailwindcss": "^1.8.10"
-  },
-  "scripts": {
-    "serve": "parcel index.html",
-    "build": "parcel build index.html",
-    "prod-server": "node server.js"
   }
 }
