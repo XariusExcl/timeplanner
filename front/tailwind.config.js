@@ -1,7 +1,19 @@
 module.exports = {
-    purge: {
-      mode: 'all',
-      enabled: true,
-      content: ['./index.html'],
+  future: {
+    // removeDeprecatedGapUtilities: true,
+    // purgeLayersByDefault: true,
+  },
+  purge: [],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          base: '#4d75f2',
+          light: '#dfe6fd',
+        }
+      }
     },
-  }
+  },
+  variants: {},
+  plugins: [],
+}

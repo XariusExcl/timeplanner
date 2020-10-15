@@ -1,3 +1,128 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: "orkney-bold";
+    src: url("./fonts/orkney-bold.otf");
+}
+
+@font-face {
+    font-family: "orkney-medium";
+    src: url("./fonts/orkney-medium.otf");
+}
+
+@font-face {
+    font-family: "orkney-regular";
+    src: url("./fonts/orkney-regular.otf");
+}
+
+@font-face {
+    font-family: "orkney-light";
+    src: url("./fonts/orkney-light.otf");
+}
+
+.topbar {
+    height: 57px;
+    width: 100%;
+    background-color: #FFF1D3;
+}
+
+[data-ref="calendar"] {
+    z-index: 10;
+    position: inherit;
+    background-color: white;
+    max-height: 80vh;
+}
+
+.popup {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+
+    &__bar {
+        width: 100%;
+        height: 57px;
+        background-color: #FFF1D3;
+    }
+
+    &__illustration {
+        width: 80%;
+        max-height: 80vh;
+    }
+}
+
+// Fullcalendar Override 
+
+.fc-col-header-cell-cushion {
+    color: #4D75F2 !important;
+    font-family: 'orkney-light';
+    text-transform: capitalize;
+    padding-top: 30px !important;
+}
+
+.fc-daygrid-day-number {
+    color: #4D75F2 !important;
+    font-family: 'orkney-regular';
+}
+
+.fc-header-toolbar {
+    flex-direction: row-reverse;
+    margin: 0 !important;
+    background-color: #FFF1D3;
+    padding: 10px;
+
+    .fc-toolbar-chunk:nth-child(3) {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .fc-toolbar-chunk:nth-child(1) {
+        margin-right: auto;
+        margin-left: 20px;
+        padding-left: 20px;
+        border-left: 2px solid #1444B8;
+    }
+}
+
+.fc-button-group {
+    display: flex;
+    align-items: center;
+    .fc-button {
+        border-radius: 50px !important;
+        width: 30px;
+        height: 30px;
+        padding: 0 !important;
+        margin: 0 5px !important;
+        background-color: #1444B8 !important;
+    }
+}
+
+.fc-today-button {
+    background-color: #4D75F2 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    text-transform: capitalize !important;
+}
+
+.fc-toolbar-title {
+    color: #1444B8 !important;
+    font-size: 18px !important;
+    text-transform: capitalize;
+}
+
+.fc-view-harness {
+    margin-top: -1px;
+    z-index: -10;
+}
+
+.fc-scroller {
+    overflow-y: hidden !important;
+}
+
+.fc-daygrid-day {
+    background-color: white;
+}

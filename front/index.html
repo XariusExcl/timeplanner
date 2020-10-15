@@ -4,8 +4,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimePlanner</title>
     <link rel="stylesheet" type="text/css" href="style.scss">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+    <!-- POPUP -->
+    <div class="popup hidden" x-data="{ selected: 'open_0' }">
+        <div class="popup__bar"></div>
+        <div class="row h-full">
+            <div class="col-12 col-md-5 h-full flex justify-center items-center">
+                <div class="popup__form flex flex-column" data-ref="signup" x-show="selected === 'open_0'">
+                    <h2 class="text-primary-base text-xl text-center">Inscription</h2>
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="mail" placeholder="test@test.com"> 
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="password" placeholder="Password"> 
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="password" placeholder="Password"> 
+                    <button class="bg-primary-base py-3 w-48 mx-auto text-white my-2 rounded-full">Valider</button>
+                    <span class="h-2 w-10 bg-yellow-500 rounded-full my-4 mx-auto"></span>
+                    <div class="flex justify-center">
+                        <div class="text-primary-base cursor-pointer" @click="selected = 'open_1'">Connexion</div>
+                    </div>
+                </div>
+                <div class="popup__form flex flex-column" data-ref="login" x-show="selected === 'open_1'">
+                    <h2 class="text-primary-base text-xl text-center">Connexion</h2>
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="mail" placeholder="test@test.com"> 
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="password" placeholder="Password"> 
+                    <button class="bg-primary-base py-3 w-48 mx-auto text-white my-2 rounded-full">Valider</button>
+                    <span class="h-2 w-10 bg-yellow-500 rounded-full my-4 mx-auto"></span>
+                    <div class="flex justify-between">
+                        <div class="text-primary-base cursor-pointer" @click="selected = 'open_0'">Inscription</div>
+                        <div class="text-primary-base cursor-pointer" @click="selected = 'open_2'">Mot de passe oublié ?</div>
+                    </div>
+                </div>
+                <div class="popup__form flex flex-column" data-ref="recover" x-show="selected === 'open_2'">
+                    <h2 class="text-primary-base text-xl text-center">Réinitialiser mon mot de passe</h2>
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="mail" placeholder="test@test.com"> 
+                    <button class="bg-primary-base py-3 w-48 mx-auto text-white my-2 rounded-full">Valider</button>
+                    <span class="h-2 w-10 bg-yellow-500 rounded-full my-4 mx-auto"></span>
+                    <div class="flex justify-between">
+                        <div class="text-primary-base cursor-pointer" @click="selected = 'open_1'">Connexion</div>
+                        <div class="text-primary-base cursor-pointer" @click="selected = 'open_0'">Inscription</div>
+                    </div>
+                </div>
+                <div class="popup__form flex flex-column" data-ref="recover" x-show="selected === 'open_3'">
+                    <h2 class="text-primary-base text-xl text-center">Modification des informations</h2>
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="text" placeholder="Nom"> 
+                    <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="text" placeholder="Prénom"> 
+                    <button class="bg-primary-base py-3 w-48 mx-auto text-white my-2 rounded-full">Valider</button>
+                    <span class="h-2 w-10 bg-yellow-500 rounded-full my-4 mx-auto"></span>
+                    <div class="flex justify-between">
+                        <div class="text-primary-base cursor-pointer">Retour</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 md:flex hidden h-full flex justify-center items-center">
+                <img class="popup__illustration" src="img/calendar.svg">
+            </div>
+        </div>
+    </div>
+    <div class="row h-full">
+        <div class="col-8 h-full pr-0 bg-blue-100">
+            <div data-ref="calendar" class="calendar w-full">
+            </div>
+        </div>
+        <div class="col-4 h-full pl-0">
+            <div class="topbar">
+                <div class="topbar__profile">
+                    <div class="topbar__profile__dropdown">
+                        <div></div>
+                    </div>
+                    <div class="topbar__profile__image"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="index.ts"></script>
 </body>
 </html>
