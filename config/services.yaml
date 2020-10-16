@@ -34,3 +34,15 @@ services:
         decorates: 'api_platform.swagger.normalizer.api_gateway'
         arguments: ['@App\Swagger\SwaggerDecorator.inner']
         autoconfigure: false
+
+    # Repositories
+    app.user.repository:
+        class: App\Repository\UsersRepository
+        arguments:
+            - Symfony\Bridge\Doctrine\RegistryInterface
+
+    # Controllers
+    app.auth.controller:
+        class: App\Controller\RegistrationController
+        arguments:
+            - '@app.user.repository'
