@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *         "get"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
- *         "post"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"}
+ *         "get",
+ *         "post"
  *     },
  *     itemOperations={
  *         "get"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
