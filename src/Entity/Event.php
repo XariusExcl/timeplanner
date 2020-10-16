@@ -12,13 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *         "get",
- *         "post"
+ *         "get"={"security"="is_granted('ROLE_ADMIN')},
+ *         "post"={"security"="is_granted('ROLE_ADMIN')}
  *     },
  *     itemOperations={
- *         "get"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
- *         "put"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
- *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
+ *         "get"={"security"="is_granted('ROLE_ADMIN')},
+ *         "put"={"security"="is_granted('ROLE_ADMIN')},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')},
  *     }
  * )
  * @ApiFilter(DateFilter::class, properties={"start_date"})
@@ -51,12 +51,12 @@ class Event
     private $user;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $start_date;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $end_date;
 
