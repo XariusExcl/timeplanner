@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use ProxyManager\ProxyGenerator\NullObject\MethodGenerator\StaticProxyConstructor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +12,6 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Doctrine\Persistence\ObjectManager;
 
 class RegistrationController extends AbstractController
 {
@@ -45,10 +46,11 @@ class RegistrationController extends AbstractController
     /**
      * Register new user
      * @param Request $request
+     * @param EntityManagerInterface $manager
      *
      * @return Response
      */
-    public function register(Request $request, ObjectManager $manager)
+    public function register(Request $request, EntityManagerInterface $manager)
     {
         $newUserData = json_decode($request->getContent());
 
@@ -61,7 +63,7 @@ class RegistrationController extends AbstractController
         $user->setPassword($password);
         $manager->persist($user);
         $manager->flush();
-        
+
         return new JsonResponse("OK", 200);
     }
 }
