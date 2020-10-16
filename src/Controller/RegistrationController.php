@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class RegistrationController extends AbstractController
 {
@@ -47,7 +48,7 @@ class RegistrationController extends AbstractController
      *
      * @return Response
      */
-    public function register(Request $request)
+    public function register(Request $request, ObjectManager $manager)
     {
         $newUserData = json_decode($request->getContent());
 
@@ -58,7 +59,9 @@ class RegistrationController extends AbstractController
         $user->setEmail($newUserData->email);
         $password = $this->encoder->encodePassword($user, $newUserData->password);
         $user->setPassword($password);
-
+        $manager->persist($user);
+        $manager->flush();
+        
         return new JsonResponse("OK", 200);
     }
 }
