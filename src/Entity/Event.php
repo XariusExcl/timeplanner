@@ -5,7 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-use App\Repository\EventsRepository;
+use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,8 +21,8 @@ use Doctrine\ORM\Mapping as ORM;
  *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
  *     }
  * )
- * @ApiFilter(DateFilter::class, properties={"start_time"})
- * @ORM\Entity(repositoryClass=EventsRepository::class)
+ * @ApiFilter(DateFilter::class, properties={"start_date"})
+ * @ORM\Entity(repositoryClass=EventRepository::class)
  *
  */
 class Event
@@ -60,21 +60,10 @@ class Event
      */
     private $end_date;
 
-    /**
-     * @ORM\Column(type="time")
-     */
-    private $start_time;
-
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     */
-    private $end_time;
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function getTitle(): ?string
     {
@@ -132,30 +121,6 @@ class Event
     public function setEndDate(\DateTimeInterface $end_date): self
     {
         $this->end_date = $end_date;
-
-        return $this;
-    }
-
-    public function getStartTime(): ?\DateTimeInterface
-    {
-        return $this->start_time;
-    }
-
-    public function setStartTime(\DateTimeInterface $start_time): self
-    {
-        $this->start_time = $start_time;
-
-        return $this;
-    }
-
-    public function getEndTime(): ?\DateTimeInterface
-    {
-        return $this->end_time;
-    }
-
-    public function setEndTime(\DateTimeInterface $end_time): self
-    {
-        $this->end_time = $end_time;
 
         return $this;
     }

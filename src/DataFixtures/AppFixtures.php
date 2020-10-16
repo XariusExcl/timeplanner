@@ -29,18 +29,15 @@ class AppFixtures extends Fixture
         $event1->setUser($user);
         $event1->setTitle("Test 1");
         $event1->setDescription("Évènement de test 1");
-        $event1->setStartDate(DateTime::createFromFormat('d/m/Y', '01/10/2020'));
-        $event1->setStartTime(DateTime::createFromFormat('H:i', '08:00'));
+        $event1->setStartDate(DateTime::createFromFormat('d/m/Y H:i', '01/10/2020 08:00'));
         $manager->persist($event1);
 
         $event2 = new Event();
         $event2->setUser($user);
         $event2->setTitle("Test 2");
         $event2->setDescription("Évènement de test 2");
-        $event2->setStartDate(DateTime::createFromFormat('d/m/Y', '01/10/2020'));
-        $event2->setStartTime(DateTime::createFromFormat('H:i', '08:00'));
-        $event2->setEndDate(DateTime::createFromFormat('d/m/Y', '01/11/2020'));
-        $event2->setEndTime(DateTime::createFromFormat('H:i', '16:00'));
+        $event2->setStartDate(DateTime::createFromFormat('d/m/Y H:i', '01/10/2020 08:00'));
+        $event2->setEndDate(DateTime::createFromFormat('d/m/Y H:i', '01/11/2020 16:00'));
         $manager->persist($event2);
 
         $user->addEvent($event1);
