@@ -16,8 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  *         "post"
  *     },
  *     itemOperations={
- *         "get",
- *         "put",
+ *         "get"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
+ *         "put"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
  *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
  *     }
  * )
