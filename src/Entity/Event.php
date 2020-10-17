@@ -12,13 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *         "get"={"security"="is_granted('ROLE_ADMIN')},
- *         "post"={"security"="is_granted('ROLE_ADMIN')}
+ *         "get"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"}
  *     },
  *     itemOperations={
- *         "get"={"security"="is_granted('ROLE_ADMIN')},
- *         "put"={"security"="is_granted('ROLE_ADMIN')},
- *         "delete"={"security"="is_granted('ROLE_ADMIN')},
+ *         "get"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"},
  *     }
  * )
  * @ApiFilter(DateFilter::class, properties={"start_date"})
@@ -118,7 +118,7 @@ class Event
         return $this->end_date;
     }
 
-    public function setEndDate(\DateTimeInterface $end_date): self
+    public function setEndDate(\DateTimeInterface $end_date = null): self
     {
         $this->end_date = $end_date;
 

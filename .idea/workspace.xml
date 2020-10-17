@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d6b62e-5a31-44b4-9a75-ccb4c8f10460" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/apiauthboilerplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/apiauthboilerplate.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CalendarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CalendarController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Event.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +115,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iN04vM4s7bs85ooiZxHn8w2KjD" />
@@ -146,7 +154,7 @@
       <workItem from="1602505211078" duration="1194000" />
       <workItem from="1602744142395" duration="23973000" />
       <workItem from="1602828371373" duration="10645000" />
-      <workItem from="1602884665298" duration="2339000" />
+      <workItem from="1602884665298" duration="8380000" />
     </task>
     <servers />
   </component>
@@ -167,10 +175,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="210" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602833770396" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1602884686140">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1602942808407">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602884686140" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602942808407" />
     <state width="205" height="539" key="HiddenNamespacesPopup" timestamp="1602749923811">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -187,6 +195,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="835" y="176" key="SettingsEditor/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1601736359366" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1602940941780">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1602940941780" />
     <state x="860" y="402" width="311" height="264" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1602791458714">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

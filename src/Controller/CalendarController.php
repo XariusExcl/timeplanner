@@ -23,7 +23,13 @@ class CalendarController extends AbstractController
         $events = [];
         foreach($this->getUser()->getEvent() as $event)
         {
-            $events += ['id' =>$event->getId() ,'title' => $event->getTitle(), 'description' => $event->getDescription(), 'startDate' => $event->getStartDate(), 'endDate' => $event->getEndDate()];
+            array_push($events, [
+                'id' =>$event->getId(),
+                'title' => $event->getTitle(),
+                'description' => $event->getDescription(),
+                'startDate' => $event->getStartDate(),
+                'endDate' => 'Y-m-d h:i:s', $event->getEndDate()
+            ]);
         }
         $data['user']['events'] = $events;
 
@@ -31,10 +37,12 @@ class CalendarController extends AbstractController
     }
 
     /**
-     * @Route("/api/userevents", methods={"POST"}
+     * @Route("/api/userevents", methods={"POST"})
      */
-    public function addEvent( ObjectManager $manager, Request $request)
+    public function addEvent(Request $request)
     {
+        $manager = $this->getDoctrine()->getManager();
+
         $user = $this->getUser();
         $data = json_decode($request->getContent(), true);
 
@@ -42,50 +50,61 @@ class CalendarController extends AbstractController
         $event->setUser($user);
         $event->setTitle($data['title']);
         $event->setDescription($data['description']);
-        $event->setStartDate($data['startDate']);
-        $event->setEndDate($data['endDate']);
+
+        $startDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['startDate']);
+        $endDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['endDate']);
+
+        $event->setStartDate($startDate? $startDate: null);
+        $event->setEndDate($endDate? $endDate: null);
 
         $manager->persist($event);
         $manager->flush();
-        return new JsonResponse("Event addded!", 200);
+        return new JsonResponse("Event added!", 200);
     }
 
     /**
-     * @Route("/api/userevents/{event}", methods={"PUT"}
+     * @Route("/api/userevents/{event}", methods={"PUT"})
      * @param Event $event
     */
-    public function editEvent(Event $event, ObjectManager $manager, Request $request)
+    public function editEvent(Event $event, Request $request)
     {
-        $user = $this->getUser();
-        $data = json_decode($request->getContent(), true);
+        $manager = $this->getDoctrine()->getManager();
 
-        foreach($user->getEvents() as $e)
+        $data = json_decode($request->getContent(), true);
+        $user = $this->getUser();
+
+        foreach($user->getEvent() as $e)
         {
             if ($e->getId() == $event->getId())
             {
                 $event->setTitle($data['title']);
                 $event->setDescription($data['description']);
-                $event->setStartDate($data['startDate']);
-                $event->setEndDate($data['endDate']);
+                $startDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['startDate']);
+                $endDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['endDate']);
+
+                $event->setStartDate($startDate? $startDate: null);
+                $event->setEndDate($endDate? $endDate: null);
 
                 $manager->flush();
                 return new JsonResponse("Event edited!", 200);
             }
         }
-        return new JsonResponse(['error' => "Event id:".$event->getId()." doesn't belong to the User!"], 403);
+        return new JsonResponse(['error' => "Event id:".$event->getId()." doesn't belong to the User!"], 400);
     }
 
 
     /**
-     * @Route("/api/userevents/{event}", methods={"DELETE"}
+     * @Route("/api/userevents/{event}", methods={"DELETE"})
      * @param Event $event
      */
-    public function deleteEvent(Event $event, ObjectManager $manager, Request $request)
+    public function deleteEvent(Event $event, Request $request)
     {
+        $manager = $this->getDoctrine()->getManager();
+
         $user = $this->getUser();
         $data = json_decode($request->getContent(), true);
 
-        foreach($user->getEvents() as $e)
+        foreach($user->getEvent() as $e)
         {
             if ($e->getId() == $event->getId())
             {
@@ -94,6 +113,6 @@ class CalendarController extends AbstractController
                 return new JsonResponse("Event deleted!", 200);
             }
         }
-        return new JsonResponse(['error' => "Event id:".$event->getId()." doesn't belong to the User!"], 403);
+        return new JsonResponse(['error' => "Event id:".$event->getId()." doesn't belong to the User!"], 400);
     }
 }
