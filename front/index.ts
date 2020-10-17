@@ -51,12 +51,13 @@ class Main {
                 method: 'get',
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + localStorage.getItem('token')},
-                url: 'http://localhost:8888/index.php/api/events '
+                url: 'http://localhost:8888/index.php/api/userevents '
             });
-            for (let i = 0; i < response.data["hydra:member"].length; i++) {
+            let data = JSON.parse(response.data).user.events;
+            for (let i = 0; i < data.length; i++) {
                 let object = {
-                    title: response.data["hydra:member"][i].title,
-                    start: response.data["hydra:member"][i].startDate,
+                    title: data[i].title,
+                    start: data[i].startDate.date,
                 }
                 events.push(object);
             }
