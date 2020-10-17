@@ -1,14 +1,13 @@
 const axios = require('axios');
-export default class Login {
+export default class Register {
     loginInput: HTMLInputElement;
     passwordInput: HTMLInputElement;
     submitInput: HTMLElement;
-    popup: HTMLElement;
 
     constructor() {
-        this.loginInput = document.querySelector('[data-ref="loginLogin"]');
-        this.passwordInput = document.querySelector('[data-ref="loginPassword"]');
-        this.submitInput = document.querySelector('[data-ref="loginSubmit"]');
+        this.loginInput = document.querySelector('[data-ref="registerLogin"]');
+        this.passwordInput = document.querySelector('[data-ref="registerPassword"]');
+        this.submitInput = document.querySelector('[data-ref="registerSubmit"]');
         this.eventListener();
     }
 
@@ -16,10 +15,6 @@ export default class Login {
         this.submitInput.addEventListener('click', async () => {
             let response = await this.getToken(this.loginInput, this.passwordInput);
             if(response.status == 200) {
-                let token = response.data.token;
-                let mail = this.loginInput.value;
-                localStorage.setItem('token', token);
-                localStorage.setItem('mail', mail);
                 location.reload();
             }
         })
@@ -30,7 +25,7 @@ export default class Login {
         let response = await axios(
             {
                 method: 'post',
-                url: 'http://localhost:8888/index.php/authentication_token',   
+                url: 'http://localhost:8888/index.php/register',   
                 data: {
                     email: login.value,
                     password: password.value 
