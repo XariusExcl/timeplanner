@@ -27,8 +27,8 @@ class CalendarController extends AbstractController
                 'id' =>$event->getId(),
                 'title' => $event->getTitle(),
                 'description' => $event->getDescription(),
-                'startDate' => $event->getStartDate(),
-                'endDate' => 'Y-m-d h:i:s', $event->getEndDate()
+                'startDate' =>$event->getStartDate() ? $event->getStartDate()->format('Y-m-d H:i') : '',
+                'endDate' => $event->getEndDate() ? $event->getEndDate()->format('Y-m-d H:i') : '',
             ]);
         }
         $data['user']['events'] = $events;
@@ -51,8 +51,8 @@ class CalendarController extends AbstractController
         $event->setTitle($data['title']);
         $event->setDescription($data['description']);
 
-        $startDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['startDate']);
-        $endDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['endDate']);
+        $startDate = \DateTime::createFromFormat('Y-m-d\TH:i', $data['startDate']);
+        $endDate = \DateTime::createFromFormat('Y-m-d\TH:i', $data['endDate']);
 
         $event->setStartDate($startDate? $startDate: null);
         $event->setEndDate($endDate? $endDate: null);
@@ -79,8 +79,8 @@ class CalendarController extends AbstractController
             {
                 $event->setTitle($data['title']);
                 $event->setDescription($data['description']);
-                $startDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['startDate']);
-                $endDate = \DateTime::createFromFormat('Y-m-d H:i:s.u', $data['endDate']);
+                $startDate = \DateTime::createFromFormat('Y-m-d\TH:i', $data['startDate']);
+                $endDate = \DateTime::createFromFormat('Y-m-d\TH:i', $data['endDate']);
 
                 $event->setStartDate($startDate? $startDate: null);
                 $event->setEndDate($endDate? $endDate: null);

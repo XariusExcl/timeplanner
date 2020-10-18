@@ -6,7 +6,38 @@
     <link rel="stylesheet" type="text/css" href="style.scss">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body x-data="{ selected: 'open_0', open: localStorage.getItem('token'), mail: localStorage.getItem('mail'),  dropdown: false}">
+<body x-data="{ selected: 'open_0', open: localStorage.getItem('token'), mail: localStorage.getItem('mail'),  dropdown: false, addDate: false}">
+    <div class="addDateButton cursor-pointer" @click="addDate = true">
+        <span>+</span>
+    </div>
+    <div class="editDatePopup" style="display:none" data-ref="editDatePopup">
+        <div class="flex flex-column p-8">
+            <span class="text-primary-base">Nom de la tâche</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="text" data-ref="editDateTitle"> 
+            <span class="text-primary-base">Date de début</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="datetime-local" data-ref="editDateStart"> 
+            <span class="text-primary-base">Date de fin</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="datetime-local" data-ref="editDateEnd"> 
+            <input type="text" data-ref="editDateID" class="hidden">
+            <div class="flex">
+                <button class="bg-primary-base py-3 w-full mx-auto text-white my-2 rounded-full" data-ref="editDateSubmit">Editer</button>
+                <button class="bg-red-500 py-3 w-full mx-auto text-white my-2 rounded-full" data-ref="deleteDateSubmit">Supprimer</button>
+            </div>
+            <button class="bg-yellow-500 py-3 w-full mx-auto text-white my-2 rounded-full" @click="document.querySelector('.editDatePopup').style.display='none'">Fermer</button>
+
+        </div>
+    </div>
+    <div class="addDatePopup" x-show="addDate === true" @click.away="addDate = false">
+        <div class="flex flex-column p-8">
+            <span class="text-primary-base">Nom de la tâche</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="text" placeholder="Nom de la tache" data-ref="addDateTitle"> 
+            <span class="text-primary-base">Date de début</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="datetime-local" placeholder="Début de la tache" data-ref="addDateStart"> 
+            <span class="text-primary-base">Date de fin</span>
+            <input class="bg-primary-light rounded-full text-primary-base py-3 px-4 my-2 outline-none" type="datetime-local" placeholder="Début de la tache" data-ref="addDateEnd"> 
+            <button class="bg-primary-base py-3 w-48 mx-auto text-white my-2 rounded-full" data-ref="addDateSubmit">Valider</button>
+        </div>
+    </div>
     <!-- POPUP -->
     <div class="popup" data-ref="popup" x-show="open == null">
         <div class="popup__bar"></div>
@@ -60,11 +91,11 @@
         </div>
     </div>
     <div class="row h-full">
-        <div class="col-8 h-full pr-0 bg-blue-100">
+        <div class="col-12 col-md-8 h-full pr-0 bg-blue-100">
             <div data-ref="calendar" class="calendar w-full">
             </div>
         </div>
-        <div class="col-4 h-full pl-0">
+        <div class="col-12 col-md-4 h-full pl-0">
             <div class="topbar h-full">
                 <div class="topbar__profile h-full">
                     <div class="topbar__profile__dropdown h-full flex justify-center items-center" x-show="open != null">

@@ -23,6 +23,49 @@
     src: url("./fonts/orkney-light.otf");
 }
 
+.addDateButton {
+    width: 100px;
+    height: 100px;
+    background-color: #4D75F2;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99;
+
+    span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        color: white;
+        font-size: 40px;
+        line-height: 1.2;
+    }
+}
+
+.addDatePopup {
+    background-color: white;
+    width: 500px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.editDatePopup {
+    background-color: white;
+    width: 500px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    z-index: 9998;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 .topbar {
     height: 57px;
     width: 100%;
@@ -61,7 +104,7 @@ body {
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
     .topbar__profile__name {
-        .topbar__profile__name__triangle {
+        &:after {
             content: '';
             width: 0; 
             height: 0; 
@@ -213,5 +256,9 @@ body {
     .fc-event-title-container {
         background-color: #4D75F2 !important;
         padding: 8px !important;
+    }
+
+    .fc-event-time {
+        display: none;
     }
 }
